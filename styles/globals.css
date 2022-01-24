@@ -14,3 +14,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  display: flex;
+  width: 90%;
+  background-color: red;
+  align-items: center;
+
+}
