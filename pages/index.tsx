@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import {useState} from 'react';
 import Step1 from './step1'
-
+import {FormProvider} from '../src/context/formcontext'
+import Theme from '../src/components/Theme/index'
 const Home: NextPage = () => {
   
 
@@ -9,7 +9,12 @@ const Home: NextPage = () => {
   <main>
       <div className='container'>
          <title>Multiforms - Typescript and Next</title>
-         <Step1/>
+         <FormProvider>
+            <Theme>
+               <Step1/>
+            </Theme>
+         </FormProvider>
+        
     
       </div>
 
