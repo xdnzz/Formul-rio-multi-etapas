@@ -1,10 +1,28 @@
 import * as A from '../../styles/form1/style'
+import {useForm, FormActions } from '../../src/context/formcontext'
+import Link from 'next/link';
+import {ChangeEvent, useEffect} from 'react'
 
 export default function Step1(){
-
-const handleNextStep = () => {
+    const {state, dispatch} = useForm();
     
-}
+    const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({
+            type: FormActions.setName,
+            payload: e.target.value
+        });
+    }
+
+    
+
+    useEffect(()=>{
+        dispatch({
+            type: FormActions.setCurrentStep,
+            payload: 1
+        })
+    },[])
+
+   
 
     return(
         <A.Display>
@@ -19,9 +37,16 @@ const handleNextStep = () => {
                <input 
                type="text"
                autoFocus
+               value={state.name}
+               onChange={handleChangeName}
                />
 
-               <button onClick={handleNextStep}>Próxima página</button>
+             {state.name !== '' ?  
+                <Link  href="step2">
+
+                    <button>Próxima página</button>
+
+                </Link> : ''}
            </label>
         </A.Display>
     )

@@ -1,6 +1,4 @@
-
-import {createContext, useContext, useReducer, ReactNode} from 'react';
-
+import { createContext, ReactNode, useContext, useReducer } from 'react';
 
 type State = {
     currentStep: number;
@@ -9,22 +7,19 @@ type State = {
     email: string;
     github: string;
 }
-
 type Action = {
     type: FormActions;
     payload: any;
-}
-
+};
 type ContextType = {
     state: State;
-    dispatch: (action: Action)=>void;
+    dispatch: (action: Action) => void;
 }
-
 type FormProviderProps = {
     children: ReactNode
-}
+};
 
-const initialData: State  = {
+const initialData: State = {
     currentStep: 0,
     name: '',
     level: 0,
@@ -32,55 +27,50 @@ const initialData: State  = {
     github: ''
 }
 
+// Context
 const FormContext = createContext<ContextType | undefined>(undefined);
 
-//Reducer
+// Reducer
 export enum FormActions {
-    setCurrentStep, 
+    setCurrentStep,
     setName,
     setLevel,
     setEmail,
     setGithub
 }
-
-const FormReducer = (state: State, action: Action) => {
-switch(action.type) {
-    case FormActions.setCurrentStep:
-        return {...state, currentStep: action.payload};
-    case FormActions.setName: 
-        return {...state, name: action.payload};
-    case FormActions.setEmail: 
-        return {...state, email: action.payload};
-    case FormActions.setLevel:
-        return {...state, level: action.payload};
-    case FormActions.setGithub:
-        return {...state, github: action.payload};
-    default:
-        return state;
+const formReducer = (state: State, action: Action) => {
+    switch(action.type) {
+        case FormActions.setCurrentStep:
+            return {...state, currentStep: action.payload};
+        case FormActions.setName:
+            return {...state, name: action.payload};
+        case FormActions.setLevel:
+            return {...state, level: action.payload};
+        case FormActions.setEmail:
+            return {...state, email: action.payload};
+        case FormActions.setGithub:
+            return {...state, github: action.payload};
+        default:
+            return state;
     }
 }
 
-
-//Provider 
-
-export const FormProvider = ({children}:FormProviderProps) => {
-
-    const [state, dispatch] = useReducer(FormReducer, initialData);
-    const value = {state, dispatch}
-
+// Provider
+export const FormProvider = ({children}: FormProviderProps) => {
+    const [state, dispatch] = useReducer(formReducer, initialData);
+    const value = { state, dispatch };
     return (
         <FormContext.Provider value={value}>
             {children}
         </FormContext.Provider>
-    )
+    );
 }
 
-//ContextHook
-
-export const useForm = ( ) => {
+// Context Hook
+export const useForm = () => {
     const context = useContext(FormContext);
-    if(context === undefined){
-        throw new Error ('UseForm precisa ser usado dentro de um FormProvider');
+    if(context === undefined) {
+        throw new Error('useForm precisa ser usado dentro do FormProvider');
     }
     return context;
 }
