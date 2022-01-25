@@ -13,7 +13,7 @@ const Home: NextPage = () => {
          <FormProvider>
             <Theme>
                
-               <Step2/>
+               <Step1/>
             </Theme>
          </FormProvider>
         

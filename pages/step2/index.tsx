@@ -3,16 +3,17 @@ import {useForm, FormActions } from '../../src/context/formcontext'
 import Link from 'next/link';
 import {ChangeEvent, useEffect} from 'react'
 
-export default function Step2(){
+export default function Step1(){
     const {state, dispatch} = useForm();
     
     const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(state)
         dispatch({
             type: FormActions.setName,
             payload: e.target.value
         });
     }
+
+    
 
     useEffect(()=>{
         dispatch({
@@ -25,11 +26,13 @@ export default function Step2(){
 
     return(
         <A.Display>
-           <p>Passo 1/3</p>
+           <p>Passo 2/3</p>
            <h1>Vamso começar com o seu nome</h1>
            <p>Preencha o nome abaixo com seu nome completo.</p>
 
            <hr/>
+
+          
         </A.Display>
     )
 }
