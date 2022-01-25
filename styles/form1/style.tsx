@@ -49,4 +49,12 @@ border-radius: 30px;
 cursor:pointer;
 margin-top:30px; 
 }
+
+
+.backbutton {
+    font-size: 16;
+    padding: 20px 40px;
+    color: #b8b8d4;
+    cursor: pointer;
+}
 `;

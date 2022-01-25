@@ -9,15 +9,8 @@ const Home: NextPage = () => {
   return (
   <main>
       <div className='container'>
-         <title>Multiforms - Typescript and Next</title>
-         <FormProvider>
-            <Theme>
-               
-               <Step1/>
-            </Theme>
-         </FormProvider>
-        
-    
+         <title>Multiforms - Typescript and Next</title>           
+               <Step1/>     
       </div>
 
    </main>
